@@ -1,0 +1,51 @@
+﻿<Window x:Name="wConfiguration" x:Class="mgb.derby.Configuration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Configuration" Height="387" Width="838">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="356" VerticalAlignment="Top" Width="830">
+            <TabItem x:Name="tiRaceSettings" Header="Race Settings">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox x:Name="gbTimer" Header="Timer" Height="125" Margin="10,193,33,0" VerticalAlignment="Top" FontWeight="Bold" BorderThickness="1"/>
+                    <Label x:Name="lblTimer" Content="Timer:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,215,0,0"/>
+                    <ComboBox x:Name="cbTimer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="163" Margin="148,215,0,0"/>
+                    <Label x:Name="lblSerialPort" Content="Serial Port:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,240,0,0"/>
+                    <GroupBox x:Name="gbRace" Header="Race" Height="183" Margin="10,10,33,0" VerticalAlignment="Top" FontWeight="Bold" BorderThickness="1"/>
+                    <Label x:Name="lblScoringMethod" Content="Scoring Method:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,95,0,0"/>
+                    <Label x:Name="lblDate" Content="Date:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,64,0,0"/>
+                    <TextBox x:Name="tbDescription" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="303" Margin="148,36,0,0"/>
+                    <Label x:Name="lblDescription" Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,33,0,0"/>
+                    <ComboBox x:Name="cbRounds" HorizontalAlignment="Left" VerticalAlignment="Top" Width="48" Margin="148,130,0,0">
+                        <ComboBoxItem Content="1"/>
+                    </ComboBox>
+                    <Label x:Name="lblRounds" Content="Rounds:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,126,0,0"/>
+                    <ComboBox x:Name="cbLanes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="48" Margin="148,161,0,0">
+                        <ComboBoxItem Content="1"/>
+                    </ComboBox>
+                    <Label x:Name="lblLanes" Content="Lanes:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,157,0,0"/>
+                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="148,240,0,0" VerticalAlignment="Top" Width="101"/>
+                    <ComboBox x:Name="cbBaudRate" HorizontalAlignment="Left" Height="23" Margin="148,268,0,0" VerticalAlignment="Top" Width="113"/>
+                    <ComboBox x:Name="cbDataBits" HorizontalAlignment="Left" Height="24" Margin="443,217,0,0" VerticalAlignment="Top" Width="173"/>
+                    <ComboBox x:Name="cbParity" HorizontalAlignment="Left" Height="24" Margin="443,246,0,0" VerticalAlignment="Top" Width="171"/>
+                    <ComboBox x:Name="cbStopBits" HorizontalAlignment="Left" Height="24" Margin="445,280,0,0" VerticalAlignment="Top" Width="171"/>
+                    <Label x:Name="lblBaudRate" Content="Baud Rate:" HorizontalAlignment="Left" Height="24" Margin="48,266,0,0" VerticalAlignment="Top" Width="83"/>
+                    <Label Content="Data Bits:" HorizontalAlignment="Left" Height="24" Margin="355,217,0,0" VerticalAlignment="Top" Width="83"/>
+                    <Label Content="Parity:" HorizontalAlignment="Left" Height="24" Margin="355,246,0,0" VerticalAlignment="Top" Width="83"/>
+                    <Label Content="Stop Bits:" HorizontalAlignment="Left" Height="24" Margin="357,280,0,0" VerticalAlignment="Top" Width="83"/>
+                    <TextBox x:Name="tbDate" HorizontalAlignment="Left" Height="22" Margin="148,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101"/>
+                    <ComboBox x:Name="cbScoringMethod" HorizontalAlignment="Left" Height="26" Margin="148,95,0,0" VerticalAlignment="Top" Width="163"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tiEntries" Header="Entries">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="tiProgress" Header="Progress" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="60" Margin="-2,-2,-3,0">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="tiStandings" Header="Standings" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="68" Margin="-2,-2,-7,0">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

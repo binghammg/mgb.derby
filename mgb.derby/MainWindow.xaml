@@ -1,0 +1,13 @@
+﻿<Window x:Name="wDerbyMain" x:Class="mgb.derby.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Derby" Height="350" Width="525">
+    <Grid>
+        <Menu HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100">
+            <MenuItem Header="Race" Click="MenuItem_Click">
+                <MenuItem Header="_New"/>
+                <MenuItem Header="_Existing"/>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>
