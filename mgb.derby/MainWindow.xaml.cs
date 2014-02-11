@@ -25,9 +25,15 @@ namespace mgb.derby
             InitializeComponent();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void New_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hi There!...");
+            Configuration ConfigWindow = new Configuration();
+            ConfigWindow.ShowDialog();
+        }
+
+        private void Existing_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not Implemented");
         }
     }
 }

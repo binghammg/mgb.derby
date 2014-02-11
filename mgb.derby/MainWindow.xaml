@@ -4,9 +4,9 @@
         Title="Derby" Height="350" Width="525">
     <Grid>
         <Menu HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100">
-            <MenuItem Header="Race" Click="MenuItem_Click">
-                <MenuItem Header="_New"/>
-                <MenuItem Header="_Existing"/>
+            <MenuItem Header="Race">
+                <MenuItem Header="_New" Click="New_Click"/>
+                <MenuItem Header="_Existing" Click="Existing_Click"/>
             </MenuItem>
         </Menu>
     </Grid>
