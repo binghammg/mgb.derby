@@ -10,9 +10,7 @@
         <TabControl HorizontalAlignment="Left" Height="373" VerticalAlignment="Top" Width="830" Margin="0,19,0,0" Grid.ColumnSpan="2">
             <TabItem x:Name="tiRaceSettings" Header="Race Settings" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
-                    <GroupBox x:Name="gbTimer" Header="Timer" Height="116" Margin="10,180,19,0" VerticalAlignment="Top" FontWeight="Bold" BorderThickness="1">
-                        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="58" RenderTransformOrigin="-1.294,14.286" Margin="730,103,-5,-30"/>
-                    </GroupBox>
+                    <GroupBox x:Name="gbTimer" Header="Timer" Height="116" Margin="10,180,19,0" VerticalAlignment="Top" FontWeight="Bold" BorderThickness="1"/>
                     <Label x:Name="lblTimer" Content="Timer:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,204,0,0" Height="24"/>
                     <ComboBox x:Name="cbTimer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="163" Margin="148,204,0,0"/>
                     <Label x:Name="lblSerialPort" Content="Serial Port:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,231,0,0" Height="24"/>
@@ -40,26 +38,45 @@
                     <Label x:Name="lblStopBits" Content="Stop Bits:" HorizontalAlignment="Left" Height="24" Margin="355,258,0,0" VerticalAlignment="Top" Width="83"/>
                     <TextBox x:Name="tbDate" HorizontalAlignment="Left" Height="24" Margin="148,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101"/>
                     <ComboBox x:Name="cbScoringMethod" HorizontalAlignment="Left" Height="24" Margin="148,87,0,0" VerticalAlignment="Top" Width="163"/>
+                    <Button x:Name="btnSaveRaceSettings" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="415,306,0,0"/>
+                    <Button x:Name="btnEditRaceSettings" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="332,306,0,0"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tiRacers" Header="Racers" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="55">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="144,82,0,0" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="99,44,0,0"/>
-                    <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Margin="100,17,0,0"/>
-                    <Label x:Name="lblFirstName" Content="First Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,17,0,0"/>
-                    <Label x:Name="lblLastName" Content="Last Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,44,0,0"/>
-                    <DataGrid x:Name="dgRacers" HorizontalAlignment="Left" Height="284" Margin="236,10,0,0" VerticalAlignment="Top" Width="578"/>
+                    <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="252,312,0,0" VerticalAlignment="Top" Width="75"/>
+                    <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="369,272,0,0"/>
+                    <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Margin="370,245,0,0"/>
+                    <Label x:Name="lblFirstName" Content="First Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,245,0,0"/>
+                    <Label x:Name="lblLastName" Content="Last Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,272,0,0"/>
+                    <DataGrid x:Name="dgRacers" HorizontalAlignment="Left" Height="228" Margin="121,10,0,0" VerticalAlignment="Top" Width="578">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat="" Width="50"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First Name" HeaderStringFormat="" Width="260"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last Name" Width="265"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="btnSave1" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="418,312,0,0"/>
+                    <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="335,312,0,0"/>
+                    <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="501,312,0,0"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tiProgress" Header="Progress" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="60">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dgProgress" HorizontalAlignment="Left" Height="294" Margin="121,10,0,0" VerticalAlignment="Top" Width="687"/>
+                    <DataGrid x:Name="dgProgress" HorizontalAlignment="Left" Height="294" Margin="30,23,0,0" VerticalAlignment="Top" Width="759"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tiStandings" Header="Standings" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="65">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dgStandings" HorizontalAlignment="Left" Height="291" Margin="80,20,0,0" VerticalAlignment="Top" Width="719"/>
+                    <DataGrid x:Name="dgStandings" HorizontalAlignment="Left" Height="291" Margin="32,20,0,0" VerticalAlignment="Top" Width="759">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Rank" HeaderStringFormat="" Width="50"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First Name" HeaderStringFormat="" Width="225"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last Name" Width="230"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Average Time" Width="125"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Average Points" Width="125"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -22,6 +22,6 @@ namespace mgb.derby
         public Configuration()
         {
             InitializeComponent();
-        }
+        }        
     }
 }
