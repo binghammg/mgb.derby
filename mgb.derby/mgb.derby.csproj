@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -78,25 +78,36 @@
     <Compile Include="Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DerbyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DerbyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DerbyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DerbyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DerbyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DerbyModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Match.cs">
+      <DependentUpon>DerbyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Match.xaml.cs">
       <DependentUpon>Match.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+    <Compile Include="Race.cs">
+      <DependentUpon>DerbyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Racer.cs">
+      <DependentUpon>DerbyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DerbyDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DerbyDataModel.edmx</DependentUpon>
+    <Compile Include="Timer.cs">
+      <DependentUpon>DerbyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Scheduler.cs" />
     <Page Include="Configuration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,22 +147,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DerbyDataModel.edmx">
+    <EntityDeploy Include="DerbyModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DerbyDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DerbyModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model1.Context.tt">
+    <None Include="DerbyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>DerbyDataModel.edmx</DependentUpon>
+      <DependentUpon>DerbyModel.edmx</DependentUpon>
+      <LastGenOutput>DerbyModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="DerbyDataModel.edmx.diagram">
-      <DependentUpon>DerbyDataModel.edmx</DependentUpon>
+    <None Include="DerbyModel.edmx.diagram">
+      <DependentUpon>DerbyModel.edmx</DependentUpon>
     </None>
-    <None Include="Model1.tt">
+    <None Include="DerbyModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-      <DependentUpon>DerbyDataModel.edmx</DependentUpon>
+      <DependentUpon>DerbyModel.edmx</DependentUpon>
+      <LastGenOutput>DerbyModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -162,11 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Derby.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -187,6 +193,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DerbyDB.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

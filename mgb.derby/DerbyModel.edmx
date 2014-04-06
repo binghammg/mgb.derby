@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DerbyDBModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DerbyDBModelStoreContainer">
+          <EntitySet Name="Match" EntityType="DerbyDBModel.Store.Match" store:Type="Tables" />
+          <EntitySet Name="Race" EntityType="DerbyDBModel.Store.Race" store:Type="Tables" />
+          <EntitySet Name="Racer" EntityType="DerbyDBModel.Store.Racer" store:Type="Tables" />
+          <EntitySet Name="Timer" EntityType="DerbyDBModel.Store.Timer" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="MatchID" />
+          </Key>
+          <Property Name="MatchID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RaceID" Type="int" Nullable="false" />
+          <Property Name="LaneID" Type="int" Nullable="false" />
+          <Property Name="RacerID" Type="int" Nullable="false" />
+          <Property Name="Time" Type="float" Nullable="false" />
+          <Property Name="Points" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="RaceID" />
+          </Key>
+          <Property Name="RaceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="ScoringMethod" Type="nvarchar" MaxLength="100" />
+          <Property Name="Rounds" Type="int" />
+          <Property Name="Lanes" Type="int" />
+        </EntityType>
+        <EntityType Name="Racer">
+          <Key>
+            <PropertyRef Name="RacerID" />
+          </Key>
+          <Property Name="RacerID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RaceID" Type="int" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Timer">
+          <Key>
+            <PropertyRef Name="TimerId" />
+          </Key>
+          <Property Name="TimerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RaceId" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="SerialPort" Type="nvarchar" MaxLength="100" />
+          <Property Name="BaudRate" Type="nvarchar" MaxLength="100" />
+          <Property Name="DataBits" Type="nvarchar" MaxLength="100" />
+          <Property Name="Parity" Type="nvarchar" MaxLength="100" />
+          <Property Name="StopBits" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DerbyDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DerbyDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Matches" EntityType="DerbyDBModel.Match" />
+          <EntitySet Name="Races" EntityType="DerbyDBModel.Race" />
+          <EntitySet Name="Racers" EntityType="DerbyDBModel.Racer" />
+          <EntitySet Name="Timers" EntityType="DerbyDBModel.Timer" />
+        </EntityContainer>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="MatchID" />
+          </Key>
+          <Property Name="MatchID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RaceID" Type="Int32" Nullable="false" />
+          <Property Name="LaneID" Type="Int32" Nullable="false" />
+          <Property Name="RacerID" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="Double" Nullable="false" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="RaceID" />
+          </Key>
+          <Property Name="RaceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="ScoringMethod" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Rounds" Type="Int32" />
+          <Property Name="Lanes" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Racer">
+          <Key>
+            <PropertyRef Name="RacerID" />
+          </Key>
+          <Property Name="RacerID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RaceID" Type="Int32" />
+          <Property Name="LastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Timer">
+          <Key>
+            <PropertyRef Name="TimerId" />
+          </Key>
+          <Property Name="TimerId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RaceId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="SerialPort" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="BaudRate" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DataBits" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Parity" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="StopBits" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DerbyDBModelStoreContainer" CdmEntityContainer="DerbyDBEntities">
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="DerbyDBModel.Match">
+              <MappingFragment StoreEntitySet="Match">
+                <ScalarProperty Name="MatchID" ColumnName="MatchID" />
+                <ScalarProperty Name="RaceID" ColumnName="RaceID" />
+                <ScalarProperty Name="LaneID" ColumnName="LaneID" />
+                <ScalarProperty Name="RacerID" ColumnName="RacerID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Races">
+            <EntityTypeMapping TypeName="DerbyDBModel.Race">
+              <MappingFragment StoreEntitySet="Race">
+                <ScalarProperty Name="RaceID" ColumnName="RaceID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ScoringMethod" ColumnName="ScoringMethod" />
+                <ScalarProperty Name="Rounds" ColumnName="Rounds" />
+                <ScalarProperty Name="Lanes" ColumnName="Lanes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Racers">
+            <EntityTypeMapping TypeName="DerbyDBModel.Racer">
+              <MappingFragment StoreEntitySet="Racer">
+                <ScalarProperty Name="RacerID" ColumnName="RacerID" />
+                <ScalarProperty Name="RaceID" ColumnName="RaceID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timers">
+            <EntityTypeMapping TypeName="DerbyDBModel.Timer">
+              <MappingFragment StoreEntitySet="Timer">
+                <ScalarProperty Name="TimerId" ColumnName="TimerId" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SerialPort" ColumnName="SerialPort" />
+                <ScalarProperty Name="BaudRate" ColumnName="BaudRate" />
+                <ScalarProperty Name="DataBits" ColumnName="DataBits" />
+                <ScalarProperty Name="Parity" ColumnName="Parity" />
+                <ScalarProperty Name="StopBits" ColumnName="StopBits" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

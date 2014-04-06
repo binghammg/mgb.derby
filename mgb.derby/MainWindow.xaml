@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Derby" Height="350" Width="525">
     <Grid>
-        <Menu HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100">
+        <Menu HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="100">
             <MenuItem Header="Race">
                 <MenuItem Header="_New" Click="New_Click"/>
                 <MenuItem Header="_Existing" Click="Existing_Click"/>

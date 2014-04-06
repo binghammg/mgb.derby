@@ -13,10 +13,10 @@ namespace mgb.derby
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Model1Container : DbContext
+    public partial class DerbyDBEntities : DbContext
     {
-        public Model1Container()
-            : base("name=Model1Container")
+        public DerbyDBEntities()
+            : base("name=DerbyDBEntities")
         {
         }
     
@@ -25,5 +25,9 @@ namespace mgb.derby
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Match> Matches { get; set; }
+        public DbSet<Race> Races { get; set; }
+        public DbSet<Racer> Racers { get; set; }
+        public DbSet<Timer> Timers { get; set; }
     }
 }
