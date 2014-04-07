@@ -13,15 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace mgb.derby
-{
-    /// <summary>
-    /// Interaction logic for Match.xaml
-    /// </summary>
-    public partial class Match : Window
+{    
+    public partial class wRace : Window
     {
-        public Match()
+        public wRace()
         {
             InitializeComponent();
         }
+
+        //TODO: Add components to the race UI
     }
 }

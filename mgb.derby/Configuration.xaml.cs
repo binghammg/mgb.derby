@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO.Ports;
 
 namespace mgb.derby
 {    
@@ -19,19 +20,22 @@ namespace mgb.derby
     {
         private Boolean _alreadySaved;
         private Race _savedRace;
-        private Timer _savedTimer; // **********todo: Add code for this
+        private Timer _savedTimer;
 
         public Configuration()
         {
             InitializeComponent();
             _savedRace = new Race();
+            _savedTimer = new Timer();
         }
 
         private void Config_Loaded(object sender, RoutedEventArgs e)
         {               
-            btnEdit.IsEnabled = false;
+            btnEditRaceSettings.IsEnabled = false;
             btnSaveRaceSettings.IsEnabled = true;
             _alreadySaved = false;
+
+            //String[] serialPorts = SerialPort.GetPortNames();
 
             tbDescription.Focus();
         }
@@ -42,7 +46,10 @@ namespace mgb.derby
             {
                 using (var context = new DerbyDBEntities())
                 {
-                    context.Database.Connection.Open();
+                    if (context.Database.Connection.State != ConnectionState.Open)
+                    {
+                        context.Database.Connection.Open();
+                    }
 
                     // Create the race
                     Race theRace = null;
@@ -54,6 +61,7 @@ namespace mgb.derby
                     else
                     {
                         theRace = _savedRace;
+                        context.Races.Attach(theRace);
                     }
 
                     theRace.Description = tbDescription.Text;
@@ -62,8 +70,12 @@ namespace mgb.derby
                     theRace.Rounds = Convert.ToInt32(cbRounds.Text);
                     theRace.Lanes = Convert.ToInt32(cbLanes.Text);
 
-                    context.Races.Add(theRace);                    
-                    context.SaveChanges();
+                    if (_alreadySaved == false)
+                    {
+                        context.Races.Add(theRace);
+                    }
+                    
+                    context.SaveChanges();    //TODO: Figure out how to get the identity from the database to use in updates!  Otherwise it is zero and I get an error
 
                     _savedRace.Description = theRace.Description;
                     _savedRace.Date = theRace.Date;
@@ -72,19 +84,43 @@ namespace mgb.derby
                     _savedRace.Lanes = theRace.Lanes;
 
                     // Create the Timer
-                    Timer newTimer = new Timer();
-                    newTimer.RaceId = theRace.RaceID;
-                    newTimer.Description = cbTimer.Text; 
-                    newTimer.SerialPort = cbSerialPort.Text;
-                    newTimer.BaudRate = cbBaudRate.Text;
-                    newTimer.DataBits = cbDataBits.Text;
-                    newTimer.Parity = cbParity.Text;
-                    newTimer.StopBits = cbStopBits.Text;
+                    Timer theTimer = null;
 
-                    context.Timers.Add(newTimer);
+                    if (_alreadySaved == false)
+                    {
+                        theTimer = new Timer();
+                    }
+                    else
+                    {
+                        theTimer = _savedTimer;
+                        context.Timers.Attach(theTimer);
+                    }
+
+                    theTimer.RaceId = theRace.RaceID;
+                    theTimer.Description = cbTimer.Text;
+                    theTimer.SerialPort = cbSerialPort.Text;
+                    theTimer.BaudRate = cbBaudRate.Text;
+                    theTimer.DataBits = cbDataBits.Text;
+                    theTimer.Parity = cbParity.Text;
+                    theTimer.StopBits = cbStopBits.Text;
+
+                    if (_alreadySaved == false)
+                    {
+                        context.Timers.Add(theTimer);
+                    }
+
                     context.SaveChanges();
                     _alreadySaved = true;
 
+                    _savedTimer.RaceId = theTimer.RaceId;
+                    _savedTimer.Description = theTimer.Description;
+                    _savedTimer.SerialPort = theTimer.SerialPort;
+                    _savedTimer.BaudRate = theTimer.BaudRate;
+                    _savedTimer.DataBits = theTimer.DataBits;
+                    _savedTimer.Parity = theTimer.Parity;
+                    _savedTimer.StopBits = theTimer.StopBits;
+
+                    
                     // Disable fields
                     tbDescription.IsEnabled = false;
                     tbDate.IsEnabled = false;
@@ -100,7 +136,7 @@ namespace mgb.derby
 
                     // Enable/Disable buttons
                     btnSaveRaceSettings.IsEnabled = false;
-                    btnEdit.IsEnabled = true;
+                    btnEditRaceSettings.IsEnabled = true;
                 }
             }
             catch (Exception ex)
@@ -127,7 +163,7 @@ namespace mgb.derby
                 cbStopBits.IsEnabled = true;
                 btnSaveRaceSettings.IsEnabled = true;
 
-                btnEdit.IsEnabled = false;
+                btnEditRaceSettings.IsEnabled = false;
                 btnSaveRaceSettings.IsEnabled = true;
 
                 tbDescription.Focus();
@@ -136,6 +172,13 @@ namespace mgb.derby
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnStartRace_Click(object sender, RoutedEventArgs e)
+        {   
+            //TODO: Start this window in its own thread.....
+            wRace RaceWindow = new wRace();
+            RaceWindow.ShowDialog();
         }      
     }
 }

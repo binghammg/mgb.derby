@@ -96,9 +96,6 @@
     <Compile Include="Match.cs">
       <DependentUpon>DerbyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Match.xaml.cs">
-      <DependentUpon>Match.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Race.cs">
       <DependentUpon>DerbyModel.tt</DependentUpon>
     </Compile>
@@ -107,6 +104,9 @@
     </Compile>
     <Compile Include="Timer.cs">
       <DependentUpon>DerbyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wRace.xaml.cs">
+      <DependentUpon>wRace.xaml</DependentUpon>
     </Compile>
     <Page Include="Configuration.xaml">
       <SubType>Designer</SubType>
@@ -124,7 +124,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Match.xaml">
+    <Page Include="wRace.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

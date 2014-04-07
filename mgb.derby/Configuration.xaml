@@ -116,6 +116,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="btnStartRace" Content="Start Race" Grid.Column="1" HorizontalAlignment="Left" Margin="454,8,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnStartRace_Click"/>
 
     </Grid>
 </Window>
