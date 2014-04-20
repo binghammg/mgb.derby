@@ -30,7 +30,14 @@ namespace mgb.derby
         }
 
         private void Config_Loaded(object sender, RoutedEventArgs e)
-        {               
+        {
+            btnAddRacer.IsEnabled = true;
+            btnEditRacer.IsEnabled = false;
+            btnSaveRacer.IsEnabled = false;
+            btnDeleteRacer.IsEnabled = false;
+            tbFirstName.IsEnabled = false;
+            tbLastName.IsEnabled = false;
+
             btnEditRaceSettings.IsEnabled = false;
             btnSaveRaceSettings.IsEnabled = true;
             _alreadySaved = false;
@@ -179,6 +186,63 @@ namespace mgb.derby
             //TODO: Start this window in its own thread.....
             wRace RaceWindow = new wRace();
             RaceWindow.ShowDialog();
-        }      
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+            tbFirstName.IsEnabled = true;
+            tbLastName.IsEnabled = true;
+            btnAddRacer.IsEnabled = false;
+            btnEditRacer.IsEnabled = false;
+            btnSaveRacer.IsEnabled = true;
+            btnDeleteRacer.IsEnabled = false;
+
+            tbFirstName.Focus();            
+        }
+
+        private void btnSaveRacer_Click(object sender, RoutedEventArgs e)
+        {
+            using (var context = new DerbyDBEntities())
+            {
+                if (context.Database.Connection.State != ConnectionState.Open)
+                {
+                    context.Database.Connection.Open();
+                }
+
+                Racer newRacer = new Racer();
+                //newRacer.RaceID = 
+                newRacer.FirstName = tbFirstName.Text;
+                newRacer.LastName = tbLastName.Text;
+
+                context.Racers.Add(newRacer);
+                context.SaveChanges();
+
+                tbFirstName.Text = "";
+                tbLastName.Text = "";
+                btnAddRacer.IsEnabled = true;
+                btnEditRacer.IsEnabled = true;
+                btnSaveRacer.IsEnabled = false;
+                btnDeleteRacer.IsEnabled = false;
+                tbFirstName.IsEnabled = false;
+                tbLastName.IsEnabled = false;
+            }
+
+            DisplayRacers();
+        }
+
+        private void DisplayRacers()
+        {
+            using (var context = new DerbyDBEntities())
+            {
+                if (context.Database.Connection.State != ConnectionState.Open)
+                {
+                    context.Database.Connection.Open();
+                }
+
+                var query = (from r in context.Racers select r);                
+                dgRacers.ItemsSource = query.ToList();
+            }
+        }
     }
 }
